@@ -24,6 +24,27 @@ body {
   line-height: 1.6;
   font-size: 16px;
   overflow-x: hidden;
+  overflow-y: auto; /* Ensure vertical scrollbar appears when needed */
+}
+
+/* Custom Scrollbar for the entire page */
+body::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--light-bg); /* Track color */
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--primary-color); /* Scrollbar thumb color */
+  border-radius: 10px;
+  border: 2px solid var(--light-bg); /* Adds padding around thumb */
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #00b380; /* Darker shade on hover */
 }
 
 a {
@@ -1175,67 +1196,6 @@ h1 {
   height: auto;
 }
 
-/* Responsive design */
-@media (max-width: 992px) {
-  .software-content {
-    flex-direction: column;
-  }
-  
-  .software-left, .software-right {
-    width: 100%;
-  }
-  
-  .software-right {
-    order: -1; /* Move image to top on mobile */
-    margin-bottom: 30px;
-  }
-  
-  .laptop-image {
-    max-width: 90%;
-  }
-}
-
-@media (max-width: 768px) {
-  .software-partner-section {
-    padding: 60px 15px;
-  }
-  
-  .software-title {
-    font-size: 24px;
-  }
-  
-  .panda-image {
-    max-width: 60px;
-  }
-  
-  .purple-circle {
-    width: 200px;
-    height: 200px;
-  }
-}
-
-@media (max-width: 480px) {
-  .software-partner-section {
-    padding: 40px 15px;
-  }
-  
-  .software-title {
-    font-size: 22px;
-  }
-  
-  .feature-item {
-    margin-bottom: 12px;
-  }
-  
-  .feature-text {
-    font-size: 14px;
-  }
-  
-  .subscription-box {
-    max-width: 100%;
-  }
-}
-
 /* CPTW Section */
 .cptw-wrapper {
   background-color: white;
@@ -1426,6 +1386,29 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scroll-behavior: smooth; /* Smooth scrolling behavior */
+  padding-bottom: 10px; /* Space for scrollbar */
+}
+
+.cptw-testimonials-slider::-webkit-scrollbar {
+  height: 8px; /* Height of the horizontal scrollbar */
+}
+
+.cptw-testimonials-slider::-webkit-scrollbar-track {
+  background: var(--light-bg);
+  border-radius: 8px;
+}
+
+.cptw-testimonials-slider::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 8px;
+  border: 2px solid var(--light-bg);
+}
+
+.cptw-testimonials-slider::-webkit-scrollbar-thumb:hover {
+  background: #00b380;
 }
 
 .cptw-nav-button {
@@ -1441,6 +1424,7 @@ h1 {
   justify-content: center;
   font-size: 18px;
   transition: background-color 0.3s;
+  flex-shrink: 0; /* Prevent buttons from shrinking */
 }
 
 .cptw-nav-button:hover {
@@ -1456,6 +1440,8 @@ h1 {
   display: flex;
   gap: 20px;
   padding: 0 20px;
+  flex-wrap: nowrap; /* Prevent wrapping of cards */
+  min-width: fit-content; /* Ensure content doesn't shrink */
 }
 
 .cptw-testimonial-card1 {
@@ -1467,6 +1453,7 @@ h1 {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-top: 15px;
   margin-left: 2%;
+  flex-shrink: 0; /* Prevent cards from shrinking */
 }
 
 .cptw-testimonial-card2 {
@@ -1475,6 +1462,7 @@ h1 {
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
 .cptw-testimonial-card3 {
@@ -1485,6 +1473,7 @@ h1 {
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
+  flex-shrink: 0;
 }
 
 .cptw-client-name {
@@ -1650,32 +1639,32 @@ h1 {
   gap: 30px;
   position: relative;
   width: 100%;
-  max-width: 300px; /* Constrain max width for better control */
+  max-width: 300px;
 }
 
 .image-top-unique {
   width: 200px;
   border-radius: 100px;
   object-fit: cover;
-  margin-right: 0; /* Removed excessive margin */
+  margin-right: 0;
 }
 
 .image-bottom-unique {
   width: 200px;
   border-radius: 100px;
   object-fit: cover;
-  margin-left: 0; /* Removed excessive margin */
-  margin-top: -100px; /* Adjusted for overlap without overflow */
+  margin-left: 0;
+  margin-top: -100px;
 }
 
 .panda-icon-unique {
   position: absolute;
-  top: -50px; /* Adjusted to position above images */
+  top: -50px;
   left: 50%;
   transform: translateX(-50%);
-  width: 15vw; /* Responsive width based on viewport */
-  height: auto; /* Maintain aspect ratio */
-  max-width: 130px; /* Cap maximum size */
+  width: 15vw;
+  height: auto;
+  max-width: 130px;
   background-color: transparent;
   border: none;
   border-radius: 50%;
@@ -1882,12 +1871,10 @@ footer {
   .hero-person {
     margin-left: 100px;
   }
-
   .steps-container {
     max-width: 1200px;
     margin: 0 auto;
   }
-
   .software-partner-section .software-title-box,
   .software-content {
     margin-left: 350px;
@@ -1901,16 +1888,13 @@ footer {
     justify-content: space-between;
     align-items: center;
   }
-  
   .hero-text {
     margin-bottom: 0;
     padding-right: 30px;
   }
-  
   .hero-image {
     margin: 0;
   }
-  
   .hero-person {
     margin-left: 50px;
   }
@@ -1922,16 +1906,13 @@ footer {
   .main-nav ul {
     gap: 15px;
   }
-  
   .header-contact {
     gap: 10px;
   }
-  
   .phone-number {
     font-size: 14px;
     padding: 6px 10px;
   }
-  
   .cta-button {
     padding: 8px 16px;
     font-size: 14px;
@@ -1941,37 +1922,30 @@ footer {
   .software-partner-section {
     padding: 30px 15px;
   }
-
   .software-title-box,
   .software-content {
     margin-left: 0;
   }
-
   .software-title-box {
     justify-content: center;
     text-align: center;
   }
-
   .software-title {
     font-size: 24px;
   }
-
   .software-content {
     flex-direction: column;
     align-items: center;
   }
-
   .software-left,
   .software-right {
     width: 100%;
     text-align: center;
   }
-
   .laptop-image {
     max-width: 90%;
     margin: 0 auto 20px;
   }
-
   .subscription-box {
     flex-direction: column;
     align-items: center;
@@ -1979,17 +1953,14 @@ footer {
     margin-left: auto;
     margin-right: auto;
   }
-
   .email-input {
     width: 100%;
     margin-bottom: 10px;
     margin-right: 0;
   }
-
   .subscribe-button {
     width: 100%;
   }
-
   .panda-image,
   .purple-circle {
     display: none;
@@ -2001,32 +1972,26 @@ footer {
     flex-direction: column;
     align-items: center;
   }
-
   .account_support_left,
   .account_support_right {
     width: 100%;
     text-align: center;
   }
-
   .account_support_purple_circle {
     width: 220px;
     height: 220px;
     margin: 0 auto;
   }
-
   .account_support_title {
     font-size: 22px;
   }
-
   .account_support_subtitle {
     font-size: 18px;
   }
-
   .account_support_button {
     margin: 20px auto 0;
     font-size: 14px;
   }
-
   .account_support_chart_box {
     width: 180px;
     padding: 8px;
@@ -2043,45 +2008,38 @@ footer {
     gap: 30px;
     padding: 30px 20px;
   }
-
   .offer-image-left,
   .offer-image-right {
     flex: 0 0 auto;
     margin: 0 auto;
   }
-
   .offer-image-left img,
   .offer-image-right img {
     width: 180px;
     height: auto;
     margin: 0 auto;
   }
-
   .offer-center {
     flex: 1 1 100%;
     align-items: center;
     padding: 0 10px;
   }
-
   .quote-btn {
     margin: 20px auto;
     display: block;
     font-size: 14px;
     padding: 8px 20px;
   }
-
   .offer-card {
     width: 100%;
     max-width: 100%;
     padding: 20px;
   }
-
   .offer-title {
     font-size: 1.6rem;
     text-align: center;
     padding: 0 10px;
   }
-
   .offer-tabs {
     flex-wrap: wrap;
     justify-content: center;
@@ -2093,7 +2051,6 @@ footer {
     padding: 20px 10px;
     margin: 0 auto;
   }
-
   .cptw-left-section,
   .cptw-center-section,
   .cptw-right-section {
@@ -2101,39 +2058,31 @@ footer {
     margin: 0 auto 30px;
     padding: 0 10px;
   }
-
   .cptw-profile-circle {
     margin: 0 auto;
   }
-
   .cptw-right-section {
     margin-top: 0;
   }
-
   .cptw-left-section {
     margin-top: 0;
   }
-
   .cptw-panda-icon {
     top: -20px;
     width: 80px;
     height: 80px;
   }
-
   .cptw-main-heading h1 {
     font-size: 22px;
     text-align: center;
   }
-
   .cptw-description,
   .cptw-contact {
     text-align: center;
   }
-
   .cptw-vision-title {
     text-align: center;
   }
-
   .cptw-vision-item {
     flex-direction: row;
     align-items: center;
@@ -2145,662 +2094,28 @@ footer {
   .cptw-testimonials-slider {
     flex-direction: column;
     align-items: center;
+    overflow-x: hidden; /* Disable horizontal scroll on smaller screens */
   }
-
+  .cptw-testimonials-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
   .cptw-testimonial-card1,
   .cptw-testimonial-card2,
   .cptw-testimonial-card3 {
     width: 90%;
     margin-bottom: 20px;
   }
-
   .cptw-nav-button {
     width: 35px;
     height: 35px;
     font-size: 16px;
   }
-
   .cptw-testimonials-title {
     font-size: 24px;
   }
 
   /* Contact Section */
-  .contact-left-unique {
-    width: 100%;
-    margin-bottom: 40px;
-    max-width: 300px; /* Ensure it doesn't stretch too wide */
-  }
-
-  .image-top-unique {
-    width: 150px;
-    margin-right: 0;
-  }
-
-  .image-bottom-unique {
-    width: 150px;
-    margin-left: 0;
-    margin-top: -80px;
-  }
-
-  .panda-icon-unique {
-    width: 20vw; /* Smaller size on tablets */
-    max-width: 100px;
-    top: -40px;
-  }
-
-  .contact-right-unique {
-    width: 100%;
-    margin-left: 0;
-    max-width: 100%;
-  }
-
-  .circle-bg-unique {
-    width: 200px;
-    height: 200px;
-    right: 0;
-  }
-}
-
-/* Small devices (landscape phones) */
-@media (max-width: 991px) {
-  /* Header */
-  header {
-    padding: 15px 20px;
-  }
-  
-  .logo span {
-    font-size: 18px;
-  }
-  
-  .main-nav ul {
-    gap: 10px;
-  }
-  
-  .main-nav a {
-    font-size: 14px;
-  }
-  
-  .contact-icon {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .contact-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  /* Hero Section */
-  h1 {
-    font-size: 32px;
-  }
-  
-  .subtitle {
-    font-size: 16px;
-  }
-  
-  .hero-person {
-    max-width: 380px;
-  }
-  
-  .financial-card {
-    bottom: 60%;
-    left: 5%;
-    transform: scale(0.9);
-  }
-  
-  .time-card {
-    top: 35%;
-    right: -60px;
-    transform: scale(0.9);
-  }
-  
-  .expense-summary {
-    top: 70%;
-    left: 70%;
-    transform: scale(0.9);
-  }
-
-  /* Steps */
-  .steps-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* Contact Section */
-  .image-top-unique {
-    width: 140px;
-  }
-
-  .image-bottom-unique {
-    width: 140px;
-    margin-top: -70px;
-  }
-
-  .panda-icon-unique {
-    width: 18vw;
-    max-width: 90px;
-    top: -35px;
-  }
-}
-
-/* Mobile devices */
-@media (max-width: 768px) {
-  /* Header */
-  header {
-    padding: 12px 15px;
-  }
-  
-  .main-nav {
-    display: none;
-  }
-  
-  .header-contact {
-    display: none;
-  }
-  
-  .menu-toggle {
-    display: block;
-  }
-  
-  .logo img {
-    height: 28px;
-  }
-  
-  .logo span {
-    font-size: 16px;
-  }
-
-  /* Hero Section */
-  .hero {
-    padding: 40px 0;
-  }
-  
-  h1 {
-    font-size: 28px;
-  }
-  
-  .hero-person {
-    max-width: 320px;
-  }
-  
-  .cta-group {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .primary-btn, .secondary-btn {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .financial-card {
-    bottom: 60%;
-    left: 0;
-    transform: scale(0.8);
-  }
-  
-  .time-card {
-    top: 30%;
-    right: -50px;
-    transform: scale(0.8);
-  }
-  
-  .expense-summary {
-    top: 65%;
-    left: 65%;
-    transform: scale(0.8);
-    width: 180px;
-  }
-
-  /* Steps */
-  .steps-container {
-    grid-template-columns: 1fr;
-  }
-
-  /* Testimonials */
-  .cptw-testimonials-slider {
-    flex-direction: column;
-  }
-
-  .cptw-testimonial-card1,
-  .cptw-testimonial-card2,
-  .cptw-testimonial-card3 {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .cptw-nav-button {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-
-  .cptw-testimonials-title {
-    font-size: 22px;
-  }
-
-  .cptw-client-name {
-    font-size: 14px;
-  }
-
-  .cptw-client-profession {
-    font-size: 12px;
-  }
-
-  .cptw-testimonial-text {
-    font-size: 12px;
-  }
-
-  /* Banks */
-  .cptwb-bank-box {
-    width: 120px;
-    height: 70px;
-  }
-  
-  .cptwb-bank-logo {
-    max-height: 40px;
-  }
-
-  .cptwb-section-title {
-    font-size: 24px;
-  }
-
-  /* Contact Section */
-  .image-top-unique {
-    width: 120px;
-    margin-right: 0;
-  }
-
-  .image-bottom-unique {
-    width: 120px;
-    margin-left: 0;
-    margin-top: -60px;
-  }
-
-  .contact-heading-unique {
-    font-size: 20px;
-    text-align: center;
-  }
-
-  .contact-description-unique {
-    text-align: center;
-  }
-
-  .form-row-unique {
-    flex-direction: column;
-  }
-
-  .panda-icon-unique {
-    width: 25vw;
-    max-width: 80px;
-    top: -30px;
-  }
-
-  .circle-bg-unique {
-    width: 150px;
-    height: 150px;
-    right: 0;
-  }
-
-  /* Footer */
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    transform: translate(-50%, 30%);
-    padding: 30px 15px;
-  }
-
-  .footer-column {
-    min-width: 100%;
-  }
-
-  .made-by {
-    margin-top: 200px;
-  }
-}
-
-/* Extra small devices (phones) */
-@media (max-width: 575px) {
-  /* Promo Banner */
-  .promo-banner p {
-    flex-direction: column;
-    gap: 5px;
-    font-size: 0.9rem;
-  }
-
-  /* Header */
-  header {
-    padding: 10px;
-  }
-  
-  .logo img {
-    height: 24px;
-  }
-  
-  .mobile-nav a {
-    padding: 12px 20px;
-  }
-
-  /* Hero */
-  .hero {
-    padding: 30px 0;
-  }
-  
-  h1 {
-    font-size: 24px;
-  }
-  
-  .subtitle {
-    font-size: 14px;
-  }
-  
-  .hero-description {
-    font-size: 14px;
-  }
-  
-  .hero-person {
-    max-width: 280px;
-  }
-  
-  .financial-card {
-    bottom: 65%;
-    left: 0;
-    transform: scale(0.7);
-  }
-  
-  .time-card {
-    top: 25%;
-    right: -40px;
-    transform: scale(0.7);
-    width: 180px;
-  }
-  
-  .expense-summary {
-    top: 60%;
-    left: 60%;
-    transform: scale(0.7);
-    width: 160px;
-  }
-  
-  .expense-bar {
-    font-size: 10px;
-  }
-
-  /* Intro Section */
-  .section-heading {
-    font-size: 26px;
-    margin-bottom: 40px;
-  }
-
-  .section-heading::after {
-    width: 80px;
-  }
-
-  /* Offer Section */
-  .offer-section {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-  }
-
-  .offer-title {
-    font-size: 1.4rem;
-  }
-
-  .tab {
-    font-size: 13px;
-    padding: 4px 12px;
-  }
-
-  .spending-info {
-    font-size: 12px;
-    padding: 12px 14px;
-    min-width: 120px;
-  }
-
-  .spending-info strong {
-    font-size: 16px;
-  }
-
-  .offer-card {
-    min-width: auto;
-    padding: 20px 15px;
-  }
-
-  /* CPTW Section */
-  .cptw-main-heading h1 {
-    font-size: 20px;
-  }
-
-  .cptw-description,
-  .cptw-contact,
-  .cptw-vision-text {
-    font-size: 13px;
-  }
-
-  .cptw-vision-title {
-    font-size: 16px;
-  }
-
-  .cptw-profile-img {
-    width: 100%;
-  }
-
-  .cptw-vision-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-  }
-
-  .cptw-testimonials-title {
-    font-size: 20px;
-  }
-
-  .cptw-dimensions {
-    font-size: 13px;
-    padding: 4px 8px;
-  }
-
-  .cptw-profile-circle {
-    border-radius: 20%;
-  }
-
-  /* Partner Section */
-  .cptwb-bank-row {
-    gap: 10px;
-  }
-  
-  .cptwb-bank-box {
-    width: 100px;
-    height: 60px;
-    padding: 10px;
-  }
-
-  .cptwb-section-title {
-    font-size: 22px;
-  }
-
-  .cptwb-description-text {
-    font-size: 14px;
-  }
-
-  /* Contact Section */
-  .image-top-unique {
-    width: 100px;
-    margin-right: 0;
-  }
-
-  .image-bottom-unique {
-    width: 100px;
-    margin-left: 0;
-    margin-top: -40px;
-  }
-
-  .contact-heading-unique {
-    font-size: 18px;
-  }
-
-  .contact-description-unique {
-    font-size: 13px;
-  }
-
-  .panda-icon-unique {
-    width: 30vw;
-    max-width: 70px;
-    top: -25px;
-  }
-
-  .circle-bg-unique {
-    width: 120px;
-    height: 120px;
-    right: 0;
-  }
-
-  /* Footer */
-  footer {
-    padding: 60px 10px 30px;
-  }
-
-  .footer-column h3 {
-    font-size: 14px;
-  }
-
-  .footer-column ul li {
-    font-size: 12px;
-  }
-
-  .logo-section p,
-  .contact-section p {
-    font-size: 12px;
-  }
-
-  .made-by {
-    font-size: 10px;
-    margin-top: 220px;
-  }
-}
-
-/* Very small devices */
-@media (max-width: 400px) {
-  .hero-person {
-    max-width: 240px;
-  }
-  
-  .financial-card {
-    transform: scale(0.6);
-    left: -5%;
-  }
-  
-  .time-card {
-    top: 25%;
-    right: -30px;
-    transform: scale(0.6);
-  }
-  
-  .expense-summary {
-    transform: scale(0.6);
-    left: 55%;
-  }
-
-  .offer-includes li {
-    padding-left: 18px;
-    font-size: 13px;
-  }
-
-  .offer-includes li:before {
-    height: 18px;
-    width: 18px;
-    font-size: 10px;
-  }
-
-  .cptwb-section-title {
-    font-size: 20px;
-  }
-
-  .software-title {
-    font-size: 20px;
-  }
-
-  .laptop-icon {
-    font-size: 20px;
-  }
-
-  .feature-item {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
-
-  /* Contact Section */
-  .panda-icon-unique {
-    width: 35vw;
-    max-width: 60px;
-    top: -20px;
-  }
-}
-/* Navbar Responsiveness */
-@media (max-width: 768px) {
-  .main-nav {
-    display: none;
-  }
-  .header-contact {
-    display: none;
-  }
-  .menu-toggle {
-    display: block;
-  }
-  header {
-    padding: 12px 15px;
-  }
-  .logo img {
-    height: 28px;
-  }
-  .logo span {
-    font-size: 16px;
-  }
-}
-
-/* Header Section Responsiveness */
-@media (max-width: 768px) {
-  .hero {
-    padding: 40px 0;
-  }
-  h1 {
-    font-size: 28px;
-  }
-  .hero-person {
-    max-width: 320px;
-  }
-  .cta-group {
-    flex-direction: column;
-    width: 100%;
-  }
-  .primary-btn, .secondary-btn {
-    width: 100%;
-    text-align: center;
-  }
-  .financial-card {
-    bottom: 60%;
-    left: 0;
-    transform: scale(0.8);
-  }
-  .time-card {
-    top: 30%;
-    right: -50px;
-    transform: scale(0.8);
-  }
-  .expense-summary {
-    top: 65%;
-    left: 65%;
-    transform: scale(0.8);
-    width: 180px;
-  }
-}
-
-/* Discutons Section (Contact Section) Responsiveness */
-@media (max-width: 1024px) {
   .contact-left-unique {
     width: 100%;
     margin-bottom: 40px;
@@ -2832,68 +2147,141 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
+/* Small devices (landscape phones) */
+@media (max-width: 991px) {
+  /* Header */
+  header {
+    padding: 15px 20px;
+  }
+  .logo span {
+    font-size: 18px;
+  }
+  .main-nav ul {
+    gap: 10px;
+  }
+  .main-nav a {
+    font-size: 14px;
+  }
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .contact-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Hero Section */
+  h1 {
+    font-size: 32px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+  .hero-person {
+    max-width: 380px;
+  }
+  .financial-card {
+    bottom: 60%;
+    left: 5%;
+    transform: scale(0.9);
+  }
+  .time-card {
+    top: 35%;
+    right: -60px;
+    transform: scale(0.9);
+  }
+  .expense-summary {
+    top: 70%;
+    left: 70%;
+    transform: scale(0.9);
+  }
+
+  /* Steps */
+  .steps-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Contact Section */
   .image-top-unique {
-    width: 120px;
-    margin-right: 0;
+    width: 140px;
   }
   .image-bottom-unique {
-    width: 120px;
-    margin-left: 0;
-    margin-top: -60px;
+    width: 140px;
+    margin-top: -70px;
   }
   .panda-icon-unique {
-    width: 25vw;
-    max-width: 80px;
-    top: -30px;
-  }
-  .circle-bg-unique {
-    width: 150px;
-    height: 150px;
-    right: 0;
+    width: 18vw;
+    max-width: 90px;
+    top: -35px;
   }
 }
 
-@media (max-width: 575px) {
-  .image-top-unique {
-    width: 100px;
-    margin-right: 0;
-  }
-  .image-bottom-unique {
-    width: 100px;
-    margin-left: 0;
-    margin-top: -40px;
-  }
-  .panda-icon-unique {
-    width: 30vw;
-    max-width: 70px;
-    top: -25px;
-  }
-  .circle-bg-unique {
-    width: 120px;
-    height: 120px;
-    right: 0;
-  }
-}
-
-@media (max-width: 400px) {
-  .panda-icon-unique {
-    width: 35vw;
-    max-width: 60px;
-    top: -20px;
-  }
-  .circle-bg-unique {
-    width: 100px;
-    height: 100px;
-    right: 0;
-  }
-}
-
-/* Testimonials Section Responsiveness */
+/* Mobile devices */
 @media (max-width: 768px) {
+  /* Header */
+  header {
+    padding: 12px 15px;
+  }
+  .main-nav {
+    display: none;
+  }
+  .header-contact {
+    display: none;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .logo img {
+    height: 28px;
+  }
+  .logo span {
+    font-size: 16px;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 40px 0;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  .hero-person {
+    max-width: 320px;
+  }
+  .cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .primary-btn, .secondary-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .financial-card {
+    bottom: 60%;
+    left: 0;
+    transform: scale(0.8);
+  }
+  .time-card {
+    top: 30%;
+    right: -50px;
+    transform: scale(0.8);
+  }
+  .expense-summary {
+    top: 65%;
+    left: 65%;
+    transform: scale(0.8);
+    width: 180px;
+  }
+
+  /* Steps */
+  .steps-container {
+    grid-template-columns: 1fr;
+  }
+
+  /* Testimonials */
   .cptw-testimonials-slider {
     flex-direction: column;
-    align-items: center;
   }
   .cptw-testimonial-card1,
   .cptw-testimonial-card2,
@@ -2918,24 +2306,299 @@ footer {
   .cptw-testimonial-text {
     font-size: 12px;
   }
+
+  /* Banks */
+  .cptwb-bank-box {
+    width: 120px;
+    height: 70px;
+  }
+  .cptwb-bank-logo {
+    max-height: 40px;
+  }
+  .cptwb-section-title {
+    font-size: 24px;
+  }
+
+  /* Contact Section */
+  .image-top-unique {
+    width: 120px;
+    margin-right: 0;
+  }
+  .image-bottom-unique {
+    width: 120px;
+    margin-left: 0;
+    margin-top: -60px;
+  }
+  .contact-heading-unique {
+    font-size: 20px;
+    text-align: center;
+  }
+  .contact-description-unique {
+    text-align: center;
+  }
+  .form-row-unique {
+    flex-direction: column;
+  }
+  .panda-icon-unique {
+    width: 25vw;
+    max-width: 80px;
+    top: -30px;
+  }
+  .circle-bg-unique {
+    width: 150px;
+    height: 150px;
+    right: 0;
+  }
+
+  /* Footer */
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transform: translate(-50%, 30%);
+    padding: 30px 15px;
+  }
+  .footer-column {
+    min-width: 100%;
+  }
+  .made-by {
+    margin-top: 200px;
+  }
 }
 
+/* Extra small devices (phones) */
 @media (max-width: 575px) {
+  /* Promo Banner */
+  .promo-banner p {
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.9rem;
+  }
+
+  /* Header */
+  header {
+    padding: 10px;
+  }
+  .logo img {
+    height: 24px;
+  }
+  .mobile-nav a {
+    padding: 12px 20px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 30px 0;
+  }
+  h1 {
+    font-size: 24px;
+  }
+  .subtitle {
+    font-size: 14px;
+  }
+  .hero-description {
+    font-size: 14px;
+  }
+  .hero-person {
+    max-width: 280px;
+  }
+  .financial-card {
+    bottom: 65%;
+    left: 0;
+    transform: scale(0.7);
+  }
+  .time-card {
+    top: 25%;
+    right: -40px;
+    transform: scale(0.7);
+    width: 180px;
+  }
+  .expense-summary {
+    top: 60%;
+    left: 60%;
+    transform: scale(0.7);
+    width: 160px;
+  }
+  .expense-bar {
+    font-size: 10px;
+  }
+
+  /* Intro Section */
+  .section-heading {
+    font-size: 26px;
+    margin-bottom: 40px;
+  }
+  .section-heading::after {
+    width: 80px;
+  }
+
+  /* Offer Section */
+  .offer-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  .offer-title {
+    font-size: 1.4rem;
+  }
+  .tab {
+    font-size: 13px;
+    padding: 4px 12px;
+  }
+  .spending-info {
+    font-size: 12px;
+    padding: 12px 14px;
+    min-width: 120px;
+  }
+  .spending-info strong {
+    font-size: 16px;
+  }
+  .offer-card {
+    min-width: auto;
+    padding: 20px 15px;
+  }
+
+  /* CPTW Section */
+  .cptw-main-heading h1 {
+    font-size: 20px;
+  }
+  .cptw-description,
+  .cptw-contact,
+  .cptw-vision-text {
+    font-size: 13px;
+  }
+  .cptw-vision-title {
+    font-size: 16px;
+  }
+  .cptw-profile-img {
+    width: 100%;
+  }
+  .cptw-vision-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
   .cptw-testimonials-title {
     font-size: 20px;
   }
-  .cptw-nav-button {
-    width: 25px;
-    height: 25px;
-    font-size: 12px;
+  .cptw-dimensions {
+    font-size: 13px;
+    padding: 4px 8px;
   }
-  .cptw-client-name {
+  .cptw-profile-circle {
+    border-radius: 20%;
+  }
+
+  /* Partner Section */
+  .cptwb-bank-row {
+    gap: 10px;
+  }
+  .cptwb-bank-box {
+    width: 100px;
+    height: 60px;
+    padding: 10px;
+  }
+  .cptwb-section-title {
+    font-size: 22px;
+  }
+  .cptwb-description-text {
+    font-size: 14px;
+  }
+
+  /* Contact Section */
+  .image-top-unique {
+    width: 100px;
+    margin-right: 0;
+  }
+  .image-bottom-unique {
+    width: 100px;
+    margin-left: 0;
+    margin-top: -40px;
+  }
+  .contact-heading-unique {
+    font-size: 18px;
+  }
+  .contact-description-unique {
     font-size: 13px;
   }
-  .cptw-client-profession {
-    font-size: 11px;
+  .panda-icon-unique {
+    width: 30vw;
+    max-width: 70px;
+    top: -25px;
   }
-  .cptw-testimonial-text {
-    font-size: 11px;
+  .circle-bg-unique {
+    width: 120px;
+    height: 120px;
+    right: 0;
+  }
+
+  /* Footer */
+  footer {
+    padding: 60px 10px 30px;
+  }
+  .footer-column h3 {
+    font-size: 14px;
+  }
+  .footer-column ul li {
+    font-size: 12px;
+  }
+  .logo-section p,
+  .contact-section p {
+    font-size: 12px;
+  }
+  .made-by {
+    font-size: 10px;
+    margin-top: 220px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 400px) {
+  .hero-person {
+    max-width: 240px;
+  }
+  .financial-card {
+    transform: scale(0.6);
+    left: -5%;
+  }
+  .time-card {
+    top: 25%;
+    right: -30px;
+    transform: scale(0.6);
+  }
+  .expense-summary {
+    transform: scale(0.6);
+    left: 55%;
+  }
+  .offer-includes li {
+    padding-left: 18px;
+    font-size: 13px;
+  }
+  .offer-includes li:before {
+    height: 18px;
+    width: 18px;
+    font-size: 10px;
+  }
+  .cptwb-section-title {
+    font-size: 20px;
+  }
+  .software-title {
+    font-size: 20px;
+  }
+  .laptop-icon {
+    font-size: 20px;
+  }
+  .feature-item {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .contact-section {
+    .panda-icon-unique {
+      width: 35vw;
+      max-width: 60px;
+      top: -20px;
+    }
   }
 }
