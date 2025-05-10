@@ -14,7 +14,9 @@
       "default",
       {
         "ignore": [
-          "box-decoration-break"
+          "box-decoration-break",
+          "min-width: fit-content",
+          "-webkit-overflow-scrolling"
         ]
       }
     ]
